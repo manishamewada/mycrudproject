@@ -1,0 +1,14 @@
+{% extends 'enroll/base.html' %}
+{% block content %}
+
+<div class="row">
+    <div class="col-sm-8 offset-2">
+        <form action=""method="POST">
+            {% csrf_token %}
+            {{ form.as_p}}
+            <input type="submit" value="update" class="btn btn-success"> 
+            <a href="{% url 'addandsave'%}" class="btn btn-primary">Bake</a>
+        </form>
+    </div>
+</div>
+{% endblock content %}
