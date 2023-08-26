@@ -1,0 +1,47 @@
+{% extends 'enroll/base.html' %}
+{% block content %}
+<div class="row"> 
+    <div class="col-sm-4">
+        <h4 class="text-center alert alert-info">add and show new student</h4>
+        <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p}}
+        <input type="submit" value="submit" class="btn btn-success ">
+    </form>
+    </div>
+    <div class=" col-sm-7 offset-1">
+        <h4 class="text-center alert alert-info">Edit and Remove record</h4>
+       
+        <table class='table table-hover' >
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">name</th>
+                <th scope="col">email</th>
+                <th scope="col">password</th>
+                <th scope="col">Action</th>
+            </tr>
+            <tbody>
+                {% for st in stu %}
+                <tr>
+                    <th scope="row">{{st.id}}</th>
+                    <td>{{st.name}}</td>
+                    <td>{{st.email}}</td>
+                    <td>{{st.password}}</td>
+                    <td><a href="{% url 'updatedata' st.id %}" class="btn btn-success btn-sm">EDIT</a>
+
+                    <form action="{% url 'deletedata' st.id %}" method="POST" class="d-inline">
+                        {% csrf_token %}
+                        <input type="submit" value="DELETE" class="btn btn-danger btn-sm">
+                    
+                    </form>    
+                    
+
+                    </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</div>
+{% endblock content%}
